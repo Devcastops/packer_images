@@ -3,5 +3,5 @@ source "googlecompute" "debian-10" {
   zone         = "europe-west2-a"
   source_image = "debian-10-buster-v20231010"
   disk_size    = var.disk_size
-  ssh_username = "root"
+  ssh_username = "debian"
 }
