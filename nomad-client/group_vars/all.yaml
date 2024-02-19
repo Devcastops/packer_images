@@ -1,0 +1,4 @@
+config_dir    : "/etc/nomad.d"
+gcp_data_dir  : /opt/gpc/data
+nomad_version : 1.7.2
+wipe_data     : false

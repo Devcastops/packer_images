@@ -1,0 +1,61 @@
+---
+
+- name: Install Packages
+  ansible.builtin.package:
+    name: "{{item}}"
+  with_items:
+    - unzip
+    - jq
+
+- name: Create nomad Group
+  group:
+    name: nomad
+
+- name: Create nomad User
+  user:
+    name: nomad
+    group: nomad
+
+- name: Install nomad
+  ansible.builtin.get_url:
+    url: https://releases.hashicorp.com/nomad/{{ nomad_version }}/nomad_{{ nomad_version }}_linux_amd64.zip
+    dest: /tmp/nomad{{ nomad_version }}.zip
+
+- name: Unzip nomad
+  unarchive:
+    src: /tmp/nomad{{ nomad_version }}.zip
+    dest: /usr/local/bin
+    remote_src: true
+  notify: Restart nomad
+
+- name: Wipe nomad Data
+  file:
+    path: "/opt/nomad/data"
+    state: absent
+  when: wipe_data
+  notify: Restart nomad
+
+- name: Create nomad Directory
+  file:
+    path: "{{item}}"
+    state: directory
+    owner: nomad
+    group: nomad
+    mode: "0750"
+  with_items: 
+    - "{{ config_dir }}"
+    - /opt/nomad
+    - /opt/nomad/data
+
+
+- name: Add nomad config
+  template:
+    src: config.hcl.j2
+    dest: /etc/nomad.d/config.hcl
+  notify: Restart nomad
+
+- name: Add nomad.Service
+  template:
+    src: nomad.service.j2
+    dest: /etc/systemd/system/nomad.service
+  notify: Restart nomad
