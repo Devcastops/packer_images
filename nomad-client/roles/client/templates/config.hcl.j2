@@ -3,10 +3,6 @@ data_dir  = "/opt/nomad/data"
 client {
   enabled = true
   servers = ["10.2.0.6:4647"]
-  host_volume "gcp" {
-    path      = "{{gcp_data_dir}}"
-    read_only = false
-  }
 }
 
 plugin "raw_exec" {
