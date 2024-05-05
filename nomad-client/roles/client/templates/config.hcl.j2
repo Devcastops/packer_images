@@ -3,6 +3,7 @@ data_dir  = "/opt/nomad/data"
 client {
   enabled = true
   servers = ["10.2.0.6:4647"]
+  node_pool = "dcog"
 }
 
 plugin "raw_exec" {
