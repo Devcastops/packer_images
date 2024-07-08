@@ -1,7 +1,13 @@
 ---
 
-- name: Nomad
+- name: Consul Client
   hosts: all
   become: true
   roles:
-    - client
+    - dco.consul.client
+
+- name: nomad_client
+  hosts: all
+  become: true
+  roles:
+    - role: dco.nomad.client

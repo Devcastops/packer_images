@@ -1,0 +1,8 @@
+---
+collections:
+  - name: ssh://git@github.com/Devcastops/dco-consul-ansible.git
+    version: main
+    type: git
+  - name: ssh://git@github.com/Devcastops/dco-nomad-ansible.git
+    version: main
+    type: git
