@@ -9,4 +9,8 @@ build {
     galaxy_file = "./nomad-client/requirements.yaml"
     playbook_file = "./nomad-client/main.yaml"
   }
+
+  hcp_packer_registry {
+    bucket_name = "nomad-client"
+  }
 }
