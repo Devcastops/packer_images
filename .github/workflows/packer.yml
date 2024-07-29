@@ -40,4 +40,7 @@ jobs:
         run: packer validate .
 
       - name: Packer Build
+        env:
+          HCP_CLIENT_ID: ${{ secrets.HCP_CLIENT_ID }}
+          HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
         run: packer build -color=false -on-error=cleanup -debug .
