@@ -17,3 +17,8 @@ variable "VAULT_TOKEN" {
   type    = string
   sensitive = true
 }
+
+variable "vault_binary_loc" {
+  type    = string
+  default = "/usr/local/bin"
+}
