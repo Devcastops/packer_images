@@ -40,8 +40,8 @@ jobs:
       - name: Install Ansible
         shell: bash
         run: |
-          sudo apt update
-          sudo apt install -y ansible
+          apt update
+          apt install -y ansible
       - name: Run `packer init`
         id: init
         run: packer init .
