@@ -10,7 +10,7 @@ variable "disk_size" {
 
 variable "VAULT_ADDR" {
   type    = string
-  default = "vault.devcastops.com:8500"
+  default = "https://vault.devcastops.com:8500"
 }
 
 variable "VAULT_TOKEN" {
