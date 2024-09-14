@@ -53,4 +53,4 @@ jobs:
         run: |
           vault --version
           which vault
-          packer build -color=false -on-error=cleanup -debug -var 'VAULT_TOKEN=${{ secrets.VAULT_TOKEN }}' .
+          packer build -color=false -on-error=cleanup -debug -var 'VAULT_TOKEN=${{ secrets.VAULT_TOKEN }}' -var 'vault_binary_loc=$(which vault)' .
