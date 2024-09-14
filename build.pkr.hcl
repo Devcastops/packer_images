@@ -8,6 +8,10 @@ build {
   provisioner "ansible" {
     galaxy_file = "./nomad-client/requirements.yaml"
     playbook_file = "./nomad-client/main.yaml"
+    extra_arguments = [ 
+      "--extra-vars", 
+      "VAULT_TOKEN=${var.VAULT_TOKEN} VAULT_ADDR=${var.VAULT_ADDR}" 
+      ]
   }
 
   hcp_packer_registry {

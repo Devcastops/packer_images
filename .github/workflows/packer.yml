@@ -44,4 +44,4 @@ jobs:
         env:
           HCP_CLIENT_ID: ${{ secrets.HCP_CLIENT_ID }}
           HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
-        run: packer build -color=false -on-error=cleanup -debug .
+        run: packer build -color=false -on-error=cleanup -debug . - "VAULT_TOKEN=${{ secrets.VAULT_TOKEN }}"
