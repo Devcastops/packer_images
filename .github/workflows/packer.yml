@@ -34,6 +34,7 @@ jobs:
       
       - name: Setup `vault`
         uses: eLco/setup-vault@v1
+        id: setup-vault
         with:
           vault_version: 1.17.5
   
@@ -50,5 +51,6 @@ jobs:
           HCP_CLIENT_ID: ${{ secrets.HCP_CLIENT_ID }}
           HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
         run: |
-          
+          vault --version
+          which vault
           packer build -color=false -on-error=cleanup -debug -var 'VAULT_TOKEN=${{ secrets.VAULT_TOKEN }}' .
