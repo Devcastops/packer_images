@@ -38,10 +38,10 @@ jobs:
 
       - name: Run `packer validate`
         id: validate
-        run: packer validate . -var "VAULT_TOKEN=token"
+        run: packer validate -var 'VAULT_TOKEN=token' .
 
       - name: Packer Build
         env:
           HCP_CLIENT_ID: ${{ secrets.HCP_CLIENT_ID }}
           HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
-        run: packer build -color=false -on-error=cleanup -debug . -var "VAULT_TOKEN=${{ secrets.VAULT_TOKEN }}"
+        run: packer build -color=false -on-error=cleanup -debug -var 'VAULT_TOKEN=${{ secrets.VAULT_TOKEN }}' .
