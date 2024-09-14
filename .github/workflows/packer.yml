@@ -38,7 +38,7 @@ jobs:
 
       - name: Run `packer validate`
         id: validate
-        run: packer validate . -var "VAULT_TOKEN=''"
+        run: packer validate . -var "VAULT_TOKEN=token"
 
       - name: Packer Build
         env:
