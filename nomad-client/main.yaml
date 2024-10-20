@@ -1,25 +1,22 @@
 ---
 
-- name: Consul_base
+- name: install nomad
+  hosts: all
+  become: true
+  roles:
+    - dco.vault.install
+
+- name: install consul
   hosts: all
   become: true
   roles:
     - dco.consul.base
-
-- name: Consul Client
-  hosts: all
-  become: true
-  roles:
     - dco.consul.client
 
-- name: nomad_base
+
+- name: install nomad
   hosts: all
   become: true
   roles:
     - dco.nomad.base
-
-- name: nomad_client
-  hosts: all
-  become: true
-  roles:
-    - role: dco.nomad.client
+    - dco.nomad.client
