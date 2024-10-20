@@ -1,11 +1,5 @@
 ---
 
-- name: install nomad
-  hosts: all
-  become: true
-  roles:
-    - dco.vault.install
-
 - name: install consul
   hosts: all
   become: true
