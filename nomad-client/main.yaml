@@ -11,6 +11,8 @@
 - name: install nomad
   hosts: all
   become: true
+  vars:
+    vault_address: "https://vault.devcastops.com:8200"
   roles:
     - dco.nomad.base
     - dco.nomad.client
