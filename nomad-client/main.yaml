@@ -6,6 +6,7 @@
   roles:
     - dco.consul.base
     - dco.consul.client
+    - dco.consul.vault_tls
 
 
 - name: install nomad
