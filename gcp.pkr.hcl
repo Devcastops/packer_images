@@ -4,4 +4,5 @@ source "googlecompute" "debian-10" {
   source_image = "ubuntu-2204-jammy-v20240223"
   disk_size    = var.disk_size
   ssh_username = "debian"
+  subnetwork   = "projects/devcastops/regions/europe-west2/subnetworks/main"
 }
