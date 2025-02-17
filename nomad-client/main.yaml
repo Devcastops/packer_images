@@ -8,6 +8,12 @@
     - dco.consul.client
     - dco.consul.vault_tls
 
+- name: install vault
+  hosts: all
+  become: true
+  roles:
+    - dco.vault.install
+
 
 - name: install nomad
   hosts: all
@@ -17,6 +23,7 @@
   roles:
     - dco.nomad.base
     - dco.nomad.client
+
 
 - name: post nomad
   hosts: all
