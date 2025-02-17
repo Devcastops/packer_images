@@ -13,7 +13,13 @@
   hosts: all
   become: true
   vars:
-    vault_address: "https://vault.devcastops.com:8200"
+    vault_address: "https://10.2.0.6:8200"
   roles:
     - dco.nomad.base
     - dco.nomad.client
+
+- name: post nomad
+  hosts: all
+  become: true
+  roles:
+    - dco.nomad.postGolden
