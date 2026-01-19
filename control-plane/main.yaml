@@ -6,4 +6,4 @@
   become: true
   roles:
     - role: dco.vault.server
-    - role: dco.ca_management
+    - role: dco.vault.ca_management
