@@ -1,0 +1,9 @@
+---
+
+
+- name: Vault
+  hosts: vault_server
+  become: true
+  roles:
+    - role: dco.vault.server
+    - role: dco.ca-management
