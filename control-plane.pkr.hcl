@@ -6,7 +6,7 @@ build {
   }
 
   provisioner "ansible" {
-    galaxy_file = "./control-planerequirements.yaml"
+    galaxy_file = "./control-plane/requirements.yaml"
     playbook_file = "./control-plane/main.yaml"
   }
 
