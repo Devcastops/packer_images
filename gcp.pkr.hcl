@@ -5,6 +5,6 @@ source "googlecompute" "debian-10" {
   disk_size       = var.disk_size
   ssh_username    = "debian"
   subnetwork      = "projects/devcastops/regions/europe-west2/subnetworks/main"
-  use_internal_ip = true
+  use_internal_ip = false
   tags            = ["nomadclient"]
 }
