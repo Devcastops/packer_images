@@ -6,5 +6,5 @@ source "googlecompute" "debian-10" {
   ssh_username    = "debian"
   subnetwork      = "projects/devcastops/regions/europe-west2/subnetworks/main"
   use_internal_ip = false
-  tags            = ["nomadclient"]
+  tags            = ["serverdebug"]
 }
