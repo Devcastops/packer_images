@@ -4,8 +4,6 @@
 - name: Vault
   hosts: all
   become: true
-  vars:
-    ansible_remote_tmp: /tmp/ansible
   roles:
     - role: dco.vault.server
     - role: dco.vault.ca_management
