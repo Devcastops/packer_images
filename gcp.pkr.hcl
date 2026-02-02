@@ -7,4 +7,5 @@ source "googlecompute" "debian-10" {
   subnetwork      = "projects/devcastops/regions/europe-west2/subnetworks/github"
   use_internal_ip = false
   tags            = ["packerbuild"]
+  ssh_file_transfer_method="direct"
 }
