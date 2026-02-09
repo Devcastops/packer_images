@@ -5,17 +5,6 @@ build {
     name   = "controlplane"
   }
 
-  provisioner "shell" {
-  inline = [
-    "df -h",
-    "whoami",
-    "sudo mkdir -p /home/runner/ansible-tmp", 
-    "sudo chmod 777 /home/runner/",           
-    "sudo chmod 777 /home/runner/ansible-tmp",
-    "df -h / /tmp /home || true",
-  ]
-}
-
   provisioner "ansible" {
     galaxy_file   = "./control-plane/requirements.yaml"
     playbook_file = "./control-plane/main.yaml"
