@@ -9,9 +9,9 @@ build {
   inline = [
     "df -h",
     "whoami",
-    "sudo mkdir -p /home/runner/ansible-tmp",  # Change from runner to runner
-    "sudo chmod 777 /home/runner/",            # Change from runner to runner
-    "sudo chmod 777 /home/runner/ansible-tmp", # Change from runner to runner
+    "sudo mkdir -p /home/runner/ansible-tmp", 
+    "sudo chmod 777 /home/runner/",           
+    "sudo chmod 777 /home/runner/ansible-tmp",
     "df -h / /tmp /home || true",
   ]
 }
