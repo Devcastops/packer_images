@@ -21,7 +21,6 @@ build {
     playbook_file = "./control-plane/main.yaml"
     user          = "runner"
     extra_arguments = [
-      "-vvv",
       "-c", "ssh",
       "-e", "ansible_ssh_transfer_method=sftp",
       "-e", "ansible_ssh_common_args='-o ControlMaster=no -o ControlPersist=no'",
