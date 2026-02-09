@@ -1,3 +1,2 @@
-ansible_remote_tmp: /tmp
 vault_address: "https://vault.devcastops.com:8200"
 packer_build: true
