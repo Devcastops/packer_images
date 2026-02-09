@@ -7,8 +7,8 @@ build {
 
   provisioner "shell" {
     inline = [
-      "df -h"
-      "sudo mkdir -p /home/runner/ansible-tmp"
+      "df -h",
+      "sudo mkdir -p /home/runner/ansible-tmp",
       "sudo chown runner:runner /home/runner/ansible-tmp",
       "df -h / /tmp /home || true",
       "df -i / /tmp /home || true"
