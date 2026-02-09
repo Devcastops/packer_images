@@ -9,9 +9,9 @@ build {
   inline = [
     "df -h",
     "whoami",
-    "sudo mkdir -p /home/debian/ansible-tmp",  # Change from runner to debian
-    "sudo chmod 777 /home/debian/",            # Change from runner to debian
-    "sudo chmod 777 /home/debian/ansible-tmp", # Change from runner to debian
+    "sudo mkdir -p /home/runner/ansible-tmp",  # Change from runner to runner
+    "sudo chmod 777 /home/runner/",            # Change from runner to runner
+    "sudo chmod 777 /home/runner/ansible-tmp", # Change from runner to runner
     "df -h / /tmp /home || true",
   ]
 }
@@ -19,13 +19,13 @@ build {
   provisioner "ansible" {
   galaxy_file = "./control-plane/requirements.yaml"
   playbook_file = "./control-plane/main.yaml"
-  user = "debian"  
+  user = "runner"  
   extra_arguments = [ 
     "-vvv",
     "-c", "ssh", 
     "-e", "ansible_ssh_common_args='-o ControlMaster=no -o ControlPersist=no'", 
     "-e", "ansible_ssh_control_path=none", 
-    "-e", "ansible_remote_tmp=/home/debian/ansible-tmp"  # Change from runner to debian
+    "-e", "ansible_remote_tmp=/home/runner/ansible-tmp"  # Change from runner to runner
 
   ]
 }
