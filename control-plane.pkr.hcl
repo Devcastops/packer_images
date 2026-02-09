@@ -9,6 +9,8 @@ build {
     inline = [
       "df -h",
       "sudo mkdir -p /home/runner/ansible-tmp",
+      "sudo chmod 777 /home/runner/",
+      "sudo chmod 777 /home/runner/ansible-tmp",
       "df -h / /tmp /home || true",
     ]
 
