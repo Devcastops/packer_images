@@ -16,3 +16,12 @@
     - role: dco.vault.server
     - role: dco.vault.init
     - role: dco.vault.ca_management
+
+- name: Consul Server
+  hosts: consul_server
+  become: true
+  vars:
+    type: server
+  roles:
+    - role: dco.consul.agent
+    - role: dco.consul.server
