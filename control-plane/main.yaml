@@ -1,6 +1,14 @@
 ---
 
 
+- name: Consul_base
+  hosts: all
+  become: true
+  roles:
+    - role: dco.consul.base
+    - role: dco.vault.install
+    - role: dco.vault.agent
+
 - name: Vault
   hosts: all
   become: true
