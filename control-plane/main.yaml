@@ -35,4 +35,3 @@
     file:
       path: "{{ trigger_file_location }}"
       state: touch
-      content: "Something Dumb"
