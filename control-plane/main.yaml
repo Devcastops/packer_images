@@ -31,6 +31,11 @@
   hosts: all
   become: true
   tasks:
+  - name: Create opt/common directory
+    file:
+      path: "/opt/common"
+      state: directory
+      mode: "0755"
   - name: Create trigger file
     file:
       path: "{{ trigger_file_location }}"
