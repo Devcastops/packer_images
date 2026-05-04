@@ -30,7 +30,9 @@
 - name: create the trigger file
   hosts: all
   become: true
-  file:
-    path: "{{ trigger_file_location }}"
-    state: touch
-    content: "Something Dumb"
+  tasks:
+  - name: Create trigger file
+    file:
+      path: "{{ trigger_file_location }}"
+      state: touch
+      content: "Something Dumb"
