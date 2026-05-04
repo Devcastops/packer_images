@@ -1,3 +1,7 @@
 vault_address: "http://localhost:8200"
 packer_build: true
 vault_storage_backend: postgresql
+postgres_ha_enabled: true
+vault_colocated: true
+
+trigger_file_location: "/opt/common/trigger_file"
