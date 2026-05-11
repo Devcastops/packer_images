@@ -1,0 +1,11 @@
+---
+collections:
+  - name: https://github.com/Devcastops/dco-consul-ansible.git
+    version: main
+    type: git
+  - name: https://github.com/Devcastops/dco-nomad-ansible.git
+    version: main
+    type: git
+  - name: https://github.com/Devcastops/dco-vault-ansible.git
+    version: main
+    type: git

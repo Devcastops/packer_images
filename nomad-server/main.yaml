@@ -22,7 +22,9 @@
   roles:
     - dco.nomad.base
     - dco.nomad.agent
+    - dco.nomad.server
     - dco.nomad.client
+    
 
 
 - name: create the trigger file
