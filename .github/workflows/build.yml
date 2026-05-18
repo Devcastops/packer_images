@@ -5,6 +5,9 @@ on:
     branches:
       - "main"
 
+env:
+  PACKER_PRODUCT_VERSION: "latest" 
+
 jobs:
   changed_files:
     runs-on: ubuntu-latest  # windows-latest || macos-latest
@@ -38,8 +41,41 @@ jobs:
         image: [ "control-plane", "nomad-server" ]
       fail-fast: false
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      - name: Build Packer Image
+      - name: exit if not needed
+        if: ${{ !contains(needs.changed_files.outputs.all_changed_files, 'common')  && !contains(needs.changed_files.outputs.all_changed_files, matrix.image) }}
+        run: exit 0
+      - id: 'auth'
+        name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: '${{ secrets.GCP_CREDS }}'
+
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: ${{ env.PACKER_PRODUCT_VERSION }}
+
+      - name: "Install Ansible"
+        uses: alex-oleshkevich/setup-ansible@v1.0.1
+        with:
+          version: "9.5.1"
+
+      - name: Run `packer init`
+        id: init
+        run: packer init .
+
+      - name: Run `packer validate`
+        id: validate
+        run: |
+          ansible-playbook --version
+          packer validate .
+
+      - name: Packer Build
         if: contains(needs.changed_files.outputs.all_changed_files, 'common')  || contains(needs.changed_files.outputs.all_changed_files, matrix.image)
-        uses: ./.github/workflows/packer.yml
+        env:
+          HCP_CLIENT_ID: ${{ secrets.HCP_CLIENT_ID }}
+          HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
+        run: |
+          sed -e '$s/$/\n/' -s ${{ matrix.image }}.pkr.hcl common_*.hcl > image.pkr.hcl
+          packer build -color=false -on-error=cleanup -debug image.pkr.hcl
