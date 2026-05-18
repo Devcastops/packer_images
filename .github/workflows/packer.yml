@@ -6,11 +6,15 @@ on:
       - "main"
   workflow_dispatch:
 
+
 env:
   PACKER_PRODUCT_VERSION: "latest" 
 
 jobs:
   build-image:
+    strategy:
+      matrix:
+        image: [ "control-plane", "nomad-server" ]
     runs-on: ubuntu-latest
     name: Build Packer
     defaults:
@@ -52,4 +56,4 @@ jobs:
           HCP_CLIENT_ID: ${{ secrets.HCP_CLIENT_ID }}
           HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
         run: |
-          packer build -color=false -on-error=cleanup -debug .
+          packer build -color=false -on-error=cleanup -debug common_*.pkr.hcl ${{ matrix.image }}.pkr.hcl
