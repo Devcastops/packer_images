@@ -30,7 +30,7 @@ jobs:
         uses: hashicorp/setup-packer@main
         id: setup
         with:
-          version: ${{ env.PRODUCT_VERSION }}
+          version: ${{ env.PACKER_PRODUCT_VERSION }}
       
       - name: Setup `vault`
         uses: eLco/setup-vault@v1
