@@ -41,31 +41,38 @@ jobs:
         image: [ "control-plane", "nomad-server" ]
       fail-fast: false
     steps:
-      - name: exit if not needed
-        if: ${{ !contains(needs.changed_files.outputs.all_changed_files, 'common')  && !contains(needs.changed_files.outputs.all_changed_files, matrix.image) }}
-        run: exit 0
+
+      - name: Checkout Repository
+        if: contains(needs.changed_files.outputs.all_changed_files, 'common')  || contains(needs.changed_files.outputs.all_changed_files, matrix.image)
+        uses: actions/checkout@v3
+
       - id: 'auth'
         name: Authenticate to Google Cloud
+        if: contains(needs.changed_files.outputs.all_changed_files, 'common')  || contains(needs.changed_files.outputs.all_changed_files, matrix.image)
         uses: google-github-actions/auth@v1
         with:
           credentials_json: '${{ secrets.GCP_CREDS }}'
 
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
+        if: contains(needs.changed_files.outputs.all_changed_files, 'common')  || contains(needs.changed_files.outputs.all_changed_files, matrix.image)
         id: setup
         with:
           version: ${{ env.PACKER_PRODUCT_VERSION }}
 
       - name: "Install Ansible"
         uses: alex-oleshkevich/setup-ansible@v1.0.1
+        if: contains(needs.changed_files.outputs.all_changed_files, 'common')  || contains(needs.changed_files.outputs.all_changed_files, matrix.image)
         with:
           version: "9.5.1"
 
       - name: Run `packer init`
+        if: contains(needs.changed_files.outputs.all_changed_files, 'common')  || contains(needs.changed_files.outputs.all_changed_files, matrix.image)
         id: init
         run: packer init .
 
       - name: Run `packer validate`
+        if: contains(needs.changed_files.outputs.all_changed_files, 'common')  || contains(needs.changed_files.outputs.all_changed_files, matrix.image)
         id: validate
         run: |
           ansible-playbook --version
