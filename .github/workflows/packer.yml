@@ -45,7 +45,7 @@ jobs:
         id: validate
         run: |
           ansible-playbook --version
-          packer validate -var 'VAULT_TOKEN=token' .
+          packer validate .
 
       - name: Packer Build
         env:
