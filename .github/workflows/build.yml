@@ -38,6 +38,8 @@ jobs:
         image: [ "control-plane", "nomad-server" ]
       fail-fast: false
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
       - name: Build Packer Image
         if: contains(needs.changed_files.outputs.all_changed_files, 'common')  || contains(needs.changed_files.outputs.all_changed_files, matrix.image)
         uses: ./.github/workflows/packer.yml
