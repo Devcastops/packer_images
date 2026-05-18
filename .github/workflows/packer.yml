@@ -1,10 +1,14 @@
 name: DCO GCP Images
 
 on:
-  push:
-    branches:
-      - "main"
   workflow_dispatch:
+    inputs:
+      image:
+        type: string
+  workflow_call:
+    inputs:
+      image:
+        type: string
 
 
 env:
@@ -12,9 +16,6 @@ env:
 
 jobs:
   build-image:
-    strategy:
-      matrix:
-        image: [ "control-plane", "nomad-server" ]
     runs-on: ubuntu-latest
     name: Build Packer
     defaults:
@@ -56,5 +57,5 @@ jobs:
           HCP_CLIENT_ID: ${{ secrets.HCP_CLIENT_ID }}
           HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
         run: |
-          sed -e '$s/$/\n/' -s ${{ matrix.image }}.pkr.hcl common_*.hcl > image.pkr.hcl
+          sed -e '$s/$/\n/' -s ${{ inputs.image }}.pkr.hcl common_*.hcl > image.pkr.hcl
           packer build -color=false -on-error=cleanup -debug image.pkr.hcl
