@@ -56,4 +56,4 @@ jobs:
           HCP_CLIENT_ID: ${{ secrets.HCP_CLIENT_ID }}
           HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
         run: |
-          packer build -color=false -on-error=cleanup -debug common_*.pkr.hcl ${{ matrix.image }}.pkr.hcl
+          packer build -color=false -on-error=cleanup -debug $( echo common_*.pkr.hcl ) ${{ matrix.image }}.pkr.hcl
