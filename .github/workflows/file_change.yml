@@ -34,7 +34,7 @@ jobs:
     steps:
       - name: Output all changed files
         run: |
-          echo "All changed files: ${{ needs.changed_files.outputs.all_changed_files }}"
+          echo "All changed files: ${{ contains(needs.changed_files.outputs.all_changed_files, 'workflows')  }}"
     
 
           
