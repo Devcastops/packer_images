@@ -8,6 +8,8 @@ jobs:
   changed_files:
     runs-on: ubuntu-latest  # windows-latest || macos-latest
     name: Test changed-files
+    outputs:
+      all_changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,3 +27,14 @@ jobs:
           for file in ${ALL_CHANGED_FILES}; do
             echo "$file was changed"
           done
+  build-image:
+    needs: changed_files
+    runs-on: ubuntu-latest
+    name: Build Packer
+    steps:
+      - name: Output all changed files
+        run: |
+          echo "All changed files: ${{ needs.changed_files.outputs.all_changed_files }}"
+    
+
+          
