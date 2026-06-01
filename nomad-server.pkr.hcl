@@ -14,7 +14,8 @@ build {
       "-e", "ansible_ssh_transfer_method=sftp",
       "-e", "ansible_ssh_common_args='-o ControlMaster=no -o ControlPersist=no'",
       "-e", "ansible_ssh_control_path=none",
-      "-e", "ansible_remote_tmp=/home/runner/ansible-tmp"
+      "-e", "ansible_remote_tmp=/home/runner/ansible-tmp",
+      "-vvv"
     ]
   }
 
