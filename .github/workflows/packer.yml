@@ -18,7 +18,7 @@ jobs:
   build-image:
     runs-on: ubuntu-latest
     name: Build Packer
-    timeout-minutes: 45
+    timeout-minutes: 120
     defaults:
       run:
         working-directory: .

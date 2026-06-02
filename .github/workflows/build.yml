@@ -36,7 +36,7 @@ jobs:
     needs: changed_files
     name: Build Packer
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 120
     strategy:
       matrix:
         image: [ "control-plane", "nomad-server" ]
