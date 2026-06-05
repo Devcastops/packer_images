@@ -9,6 +9,7 @@ build {
     galaxy_file   = "./nomad-server/requirements.yaml"
     playbook_file = "./nomad-server/main.yaml"
     user          = "runner"
+    use_proxy     = false 
     ansible_env_vars = [
       # Override (not append) the default ssh_args so ControlMaster/ControlPersist
       # are actually disabled. Appending via ansible_ssh_common_args does NOT work:

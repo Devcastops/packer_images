@@ -57,6 +57,7 @@ jobs:
         env:
           HCP_CLIENT_ID: ${{ secrets.HCP_CLIENT_ID }}
           HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
+          PACKER_LOG: "1"
         run: |
           sed -e '$s/$/\n/' -s ${{ inputs.image }}.pkr.hcl common_*.hcl > image.pkr.hcl
           packer build -color=false -on-error=cleanup -debug image.pkr.hcl
