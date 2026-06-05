@@ -31,3 +31,4 @@ build {
     bucket_name = "nomad-server"
   }
 }
+

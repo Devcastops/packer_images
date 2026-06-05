@@ -9,12 +9,21 @@ build {
     galaxy_file   = "./control-plane/requirements.yaml"
     playbook_file = "./control-plane/main.yaml"
     user          = "runner"
+    use_proxy     = false 
+    ansible_env_vars = [
+      # Override (not append) the default ssh_args so ControlMaster/ControlPersist
+      # are actually disabled. Appending via ansible_ssh_common_args does NOT work:
+      # ssh uses first-value-wins, and Ansible's default `-o ControlMaster=auto
+      # -o ControlPersist=60s` comes first, so the persistent multiplexed socket
+      # stays on and can wedge a task indefinitely.
+      "ANSIBLE_SSH_ARGS=-o StrictHostKeyChecking=no -o ControlMaster=no -o ControlPersist=no -o ServerAliveInterval=15 -o ServerAliveCountMax=4",
+      "ANSIBLE_TIMEOUT=30",
+      "ANSIBLE_TASK_TIMEOUT=600",
+    ]
     extra_arguments = [
-      "-c", "ssh",
       "-e", "ansible_ssh_transfer_method=sftp",
-      "-e", "ansible_ssh_common_args='-o ControlMaster=no -o ControlPersist=no'",
-      "-e", "ansible_ssh_control_path=none",
-      "-e", "ansible_remote_tmp=/home/runner/ansible-tmp"
+      "-e", "ansible_remote_tmp=/home/runner/ansible-tmp",
+      "-vvv"
     ]
   }
 
