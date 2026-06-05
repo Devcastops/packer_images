@@ -22,8 +22,7 @@ build {
     ]
     extra_arguments = [
       "-e", "ansible_ssh_transfer_method=sftp",
-      "-e", "ansible_remote_tmp=/home/runner/ansible-tmp",
-      "-vvv"
+      "-e", "ansible_remote_tmp=/home/runner/ansible-tmp"
     ]
   }
 
