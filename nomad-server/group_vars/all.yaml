@@ -1,4 +1,4 @@
 vault_address: "http://vault.internal.devcastops.com:8200"
-consul_address: "consul.internal.devcastops.com:8501"
+consul_address: "consul.internal.devcastops.com"
 packer_build: true
 trigger_file_location: "/opt/common/trigger_file"
