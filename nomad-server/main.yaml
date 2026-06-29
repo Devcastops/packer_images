@@ -23,6 +23,7 @@
     - dco.nomad.base
     - dco.nomad.agent
     - dco.nomad.server
+    - dco.nomad.init
     - dco.nomad.client
     
 
