@@ -15,7 +15,6 @@
     - dco.consul.client
     - dco.consul.agent
 
-
 - name: install nomad
   hosts: all
   become: true
@@ -25,8 +24,6 @@
     - dco.nomad.server
     - dco.nomad.init
     - dco.nomad.client
-    
-
 
 - name: create the trigger file
   hosts: all
